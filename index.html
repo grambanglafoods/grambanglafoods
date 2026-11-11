@@ -1,0 +1,352 @@
+ <!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GramBangla Foods | গ্রামবাংলা ফুডস - সাপাহার, নওগাঁ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1b5e20;
+      --primary-dark: #0d3b11;
+      --secondary: #f57c00;
+      --bg-light: #f8fafc;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Hind Siliguri', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-dark); padding-bottom: 70px; }
+
+    .top-notice { background: #0f172a; color: #f8fafc; font-size: 12px; text-align: center; padding: 6px 10px; }
+    .top-notice span { color: #fde047; font-weight: 700; }
+    
+    .hotline-bar {
+      background: var(--primary-dark); color: #fff; padding: 8px 15px; font-size: 13px;
+      display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; font-weight: 600;
+    }
+    .hotline-bar a { color: #4ade80; text-decoration: none; }
+
+    header {
+      background: #ffffff; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); padding: 12px 18px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .header-left { display: flex; align-items: center; gap: 15px; }
+    .menu-btn { font-size: 22px; cursor: pointer; color: var(--primary-dark); }
+    .logo { font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+
+    .search-container { flex-grow: 1; max-width: 400px; position: relative; }
+    .search-container input {
+      width: 100%; padding: 8px 15px 8px 35px; border-radius: 25px; border: 1px solid #cbd5e1;
+      outline: none; background: #f1f5f9; font-size: 13px;
+    }
+    .search-container i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+    .cart-trigger { position: relative; font-size: 22px; color: var(--primary-dark); cursor: pointer; }
+    .cart-count {
+      position: absolute; top: -6px; right: -8px; background: var(--secondary);
+      color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+      display: flex; justify-content: center; align-items: center; font-weight: 700;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(27,94,32,0.95), rgba(46,125,50,0.85));
+      color: #fff; text-align: center; padding: 35px 15px; border-radius: 0 0 20px 20px;
+    }
+    .hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .hero p { font-size: 13px; color: #e2e8f0; }
+    .hero-badge { background: rgba(255, 255, 255, 0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; margin-top: 8px; font-size: 11px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px 15px; }
+    
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 15px; }
+    .section-title { font-size: 17px; font-weight: 700; color: var(--primary-dark); border-left: 4px solid var(--secondary); padding-left: 10px; }
+    
+    .add-prod-btn {
+      background: var(--secondary); color: #fff; border: none; padding: 8px 14px; border-radius: 25px;
+      font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px;
+    }
+
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 20px; }
+    .cat-item {
+      background: #fff; border-radius: 10px; padding: 10px 5px; text-align: center; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04); border: 1px solid #f1f5f9;
+    }
+    .cat-item:hover { border-color: var(--primary); background: #f0fdf4; }
+    .cat-item i { font-size: 20px; color: var(--primary); margin-bottom: 4px; display: block; }
+    .cat-item span { font-size: 11px; font-weight: 600; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .product-card {
+      background: #fff; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .product-img { width: 100%; height: 130px; object-fit: cover; background: #e2e8f0; }
+    .product-details { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .product-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .product-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+    .product-price { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    .action-btns { display: flex; flex-direction: column; gap: 4px; }
+    .btn-buy { background: var(--secondary); color: #fff; border: none; padding: 6px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; }
+    .btn-wa { background: #22c55e; color: #fff; border: none; padding: 6px; border-radius: 5px; font-size: 11px; font-weight: 700; text-decoration: none; text-align: center; display: block; }
+
+    /* Sidebar */
+    .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 200; }
+    .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #fff; z-index: 201; transition: 0.3s; display: flex; flex-direction: column; }
+    .sidebar.active { left: 0; }
+    .sidebar-header { background: var(--primary-dark); color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-menu { list-style: none; padding: 15px; overflow-y: auto; }
+    .sidebar-menu li { padding: 10px 0; border-bottom: 1px solid #f1f5f9; cursor: pointer; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+
+    /* Modals */
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 300; }
+    .modal-box { background: #fff; width: 90%; max-width: 380px; border-radius: 12px; padding: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
+    .form-group { margin-bottom: 10px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+    .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; }
+    .submit-btn { background: var(--primary); color: #fff; border: none; padding: 10px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 5px; }
+
+    /* Footer */
+    footer { background: #0f172a; color: #f8fafc; padding: 30px 15px 80px 15px; margin-top: 30px; text-align: center; font-size: 12px; }
+    .footer-content h2 { color: #4ade80; font-size: 18px; margin-bottom: 6px; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 6px 0; z-index: 100; }
+    .nav-btn { text-align: center; color: var(--text-muted); text-decoration: none; font-size: 11px; cursor: pointer; }
+    .nav-btn i { display: block; font-size: 16px; margin-bottom: 2px; }
+    .nav-btn.active { color: var(--primary); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="top-notice">
+    🌿 ১০০% প্রাকৃতিক পণ্য | সরাসরি <span>সাপাহার, নওগাঁ</span> থেকে সরবরাহকৃত
+  </div>
+
+  <div class="hotline-bar">
+    <span>হটলাইন:</span>
+    <a href="tel:01799013270"><i class="fa-solid fa-phone"></i> 01799-013270</a> |
+    <a href="tel:01799069636"><i class="fa-solid fa-phone"></i> 01799-069636</a> |
+    <a href="tel:01774093163"><i class="fa-solid fa-phone"></i> 01774-093163</a>
+  </div>
+
+  <header>
+    <div class="header-left">
+      <i class="fa-solid fa-bars menu-btn" onclick="toggleSidebar()"></i>
+      <a href="#" class="logo"><i class="fa-solid fa-leaf"></i> গ্রামবাংলা</a>
+    </div>
+
+    <div class="search-container">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন..." onkeyup="searchProducts()">
+    </div>
+
+    <div class="cart-trigger" onclick="alert('কার্ট সেকশন')">
+      <i class="fa-solid fa-basket-shopping"></i>
+      <div class="cart-count" id="cartBadge">0</div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3 style="color:#fff; font-size:16px;">ক্যাটাগরি সমূহ</h3>
+      <i class="fa-solid fa-xmark" style="cursor:pointer; color:#fff; font-size:18px;" onclick="toggleSidebar()"></i>
+    </div>
+    <ul class="sidebar-menu">
+      <li onclick="filterCategory('সকল')"><i class="fa-solid fa-border-all"></i> সকল পণ্য</li>
+      <li onclick="filterCategory('চাউল')"><i class="fa-solid fa-bowl-rice"></i> চাউল</li>
+      <li onclick="filterCategory('গম')"><i class="fa-solid fa-wheat-awn"></i> গম</li>
+      <li onclick="filterCategory('ভুট্টা')"><i class="fa-solid fa-seedling"></i> ভুট্টা</li>
+      <li onclick="filterCategory('সরিষা তেল')"><i class="fa-solid fa-bottle-droplet"></i> সরিষা তেল</li>
+      <li onclick="filterCategory('আম')"><i class="fa-solid fa-apple-whole"></i> আম</li>
+      <li onclick="filterCategory('লিচু')"><i class="fa-solid fa-circle"></i> লিচু</li>
+      <li onclick="filterCategory('বরই')"><i class="fa-solid fa-spa"></i> বড়ই</li>
+      <li onclick="filterCategory('খেজুর')"><i class="fa-solid fa-calendar-day"></i> খেজুর</li>
+      <li onclick="filterCategory('কালাই')"><i class="fa-solid fa-seedling"></i> কালাই</li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>গ্রামবাংলা ফুডস</h1>
+    <p>সাপাহার, নওগাঁর খাঁটি গ্রাম থেকে সংগৃহীত মানসম্মত খাদ্যপণ্য</p>
+    <div class="hero-badge"><i class="fa-solid fa-location-dot"></i> সাপাহার, নওগাঁ</div>
+  </div>
+
+  <div class="container">
+    <div class="section-title" style="margin-bottom:12px;">পণ্য ক্যাটাগরি</div>
+    <div class="cat-grid">
+      <div class="cat-item" onclick="filterCategory('চাউল')"><i class="fa-solid fa-bowl-rice"></i><span>চাউল</span></div>
+      <div class="cat-item" onclick="filterCategory('গম')"><i class="fa-solid fa-wheat-awn"></i><span>গম</span></div>
+      <div class="cat-item" onclick="filterCategory('ভুট্টা')"><i class="fa-solid fa-seedling"></i><span>ভুট্টা</span></div>
+      <div class="cat-item" onclick="filterCategory('সরিষা তেল')"><i class="fa-solid fa-bottle-droplet"></i><span>সরিষা তেল</span></div>
+      <div class="cat-item" onclick="filterCategory('আম')"><i class="fa-solid fa-apple-whole"></i><span>আম</span></div>
+      <div class="cat-item" onclick="filterCategory('লিচু')"><i class="fa-solid fa-circle"></i><span>লিচু</span></div>
+      <div class="cat-item" onclick="filterCategory('বরই')"><i class="fa-solid fa-spa"></i><span>বরই</span></div>
+      <div class="cat-item" onclick="filterCategory('খেজুর')"><i class="fa-solid fa-calendar-day"></i><span>খেজুর</span></div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-title" id="pageTitle">আমাদের পণ্যসমূহ</div>
+      <button class="add-prod-btn" onclick="openAddModal()"><i class="fa-solid fa-plus"></i> পণ্য যোগ করুন</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div class="modal" id="addProductModal">
+    <div class="modal-box">
+      <i class="fa-solid fa-xmark" style="position:absolute; top:15px; right:15px; cursor:pointer; font-size:18px;" onclick="closeAddModal()"></i>
+      <h3 style="color:var(--primary-dark); margin-bottom:12px;">নতুন পণ্য যুক্ত করুন</h3>
+      
+      <div class="form-group">
+        <label>পণ্যের নাম</label>
+        <input type="text" id="newPName" placeholder="যেমন: খাঁটি মধু">
+      </div>
+
+      <div class="form-group">
+        <label>ক্যাটাগরি</label>
+        <select id="newPCat">
+          <option value="চাউল">চাউল</option>
+          <option value="গম">গম</option>
+          <option value="ভুট্টা">ভুট্টা</option>
+          <option value="সরিষা তেল">সরিষা তেল</option>
+          <option value="আম">আম</option>
+          <option value="লিচু">লিচু</option>
+          <option value="বরই">বরই</option>
+          <option value="খেজুর">খেজুর</option>
+          <option value="কালাই">কালাই</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>দাম (টাকা)</label>
+        <input type="number" id="newPPrice" placeholder="যেমন: ২৫০">
+      </div>
+
+      <div class="form-group">
+        <label>বিবরণ</label>
+        <input type="text" id="newPDesc" placeholder="যেমন: ১ কেজি প্যাকেট">
+      </div>
+
+      <div class="form-group">
+        <label>ছবির ডাইরেক্ট লিংক (URL)</label>
+        <input type="url" id="newPImg" placeholder="https://image-link.com/photo.jpg">
+      </div>
+
+      <button class="submit-btn" onclick="saveNewProduct()">যুক্ত করুন</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <h2>গ্রামবাংলা ফুডস</h2>
+      <p>সাপাহার, নওগাঁ থেকে সংগৃহীত শতভাগ খাঁটি পণ্য।</p>
+      <p style="color:#4ade80; font-weight:700;">Founder: SAD</p>
+      <p>ইমেইল: mdsazedulhaque2030@gmail.com</p>
+      <p>© 2026 GramBangla Foods. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <div class="bottom-nav">
+    <div class="nav-btn active" onclick="filterCategory('সকল')"><i class="fa-solid fa-house"></i>হোম</div>
+    <div class="nav-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i>মেনু</div>
+    <div class="nav-btn" onclick="openAddModal()"><i class="fa-solid fa-plus-circle"></i>অ্যাড পণ্য</div>
+    <a href="tel:01799013270" class="nav-btn" style="color:inherit;"><i class="fa-solid fa-phone"></i>কল</a>
+  </div>
+
+  <script>
+    let products = JSON.parse(localStorage.getItem('gb_prods_v2')) || [
+      { id: 1, name: "সাপাহারের খাঁটি সরিষার তেল", category: "সরিষা তেল", price: 220, desc: "ঘানি ভাঙা ১ লিটার", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
+      { id: 2, name: "প্রিমিয়াম নাজিরশাইল চাউল", category: "চাউল", price: 85, desc: "১ কেজি নতুন চাল", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300" },
+      { id: 3, name: "সাপাহারের মিষ্টি ল্যাংড়া আম", category: "আম", price: 120, desc: "গাছপাকা ১ কেজি", img: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=300" }
+    ];
+
+    function renderProducts(list = products) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#888; padding:20px;">কোনো পণ্য পাওয়া যায়নি।</p>';
+        return;
+      }
+
+      list.forEach(p => {
+        grid.innerHTML += `
+          <div class="product-card">
+            <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
+            <div class="product-details">
+              <div>
+                <div class="product-title">${p.name}</div>
+                <div class="product-desc">${p.desc || ''}</div>
+                <div class="product-price">৳${p.price}</div>
+              </div>
+              <div class="action-btns">
+                <button class="btn-buy" onclick="alert('অর্ডার করতে হটলাইনে কল করুন বা WhatsApp করুন')">Buy Now</button>
+                <a class="btn-wa" href="https://wa.me/8801799013270?text=অর্ডার%20করতে%20চাই:%20${encodeURIComponent(p.name)}" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.toggle('active');
+      overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+    }
+
+    function filterCategory(cat) {
+      toggleSidebar();
+      document.getElementById('pageTitle').innerText = cat === 'সকল' ? 'আমাদের পণ্যসমূহ' : cat + ' ক্যাটাগরি';
+      const filtered = cat === 'সকল' ? products : products.filter(p => p.category === cat);
+      renderProducts(filtered);
+    }
+
+    function searchProducts() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+      renderProducts(filtered);
+    }
+
+    function openAddModal() { document.getElementById('addProductModal').style.display = 'flex'; }
+    function closeAddModal() { document.getElementById('addProductModal').style.display = 'none'; }
+
+    function saveNewProduct() {
+      const name = document.getElementById('newPName').value;
+      const category = document.getElementById('newPCat').value;
+      const price = parseFloat(document.getElementById('newPPrice').value);
+      const desc = document.getElementById('newPDesc').value;
+      const img = document.getElementById('newPImg').value;
+
+      if (!name || !price || !img) {
+        alert('দয়া করে নাম, দাম এবং ছবির লিংক দিন!');
+        return;
+      }
+
+      const newP = { id: Date.now(), name, category, price, desc, img };
+      products.unshift(newP);
+      localStorage.setItem('gb_prods_v2', JSON.stringify(products));
+      renderProducts();
+      closeAddModal();
+      alert('পণ্য সফলভাবে যুক্ত হয়েছে!');
+
+      document.getElementById('newPName').value = '';
+      document.getElementById('newPPrice').value = '';
+      document.getElementById('newPDesc').value = '';
+      document.getElementById('newPImg').value = '';
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>
