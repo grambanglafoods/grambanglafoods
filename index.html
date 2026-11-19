@@ -6,19 +6,22 @@
   <title>GramBangla Foods | Sapaghar, Naogaon</title>
   <style>
     :root {
-      --bg: #f7f5f0;
+      --bg: #f4f7f4;
       --card: #ffffff;
-      --primary: #1b5e20;
-      --primary-dark: #124116;
-      --accent: #e65100;
-      --text: #1f2933;
-      --muted: #616e7c;
-      --border: #e4e7eb;
+      --primary: #14532d;
+      --primary-2: #166534;
+      --accent: #ea580c;
+      --accent-dark: #c2410c;
+      --danger: #dc2626;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
     }
 
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: rgba(27, 94, 32, 0.15);
+      -webkit-tap-highlight-color: rgba(22, 101, 52, 0.16);
     }
 
     body {
@@ -26,7 +29,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
       touch-action: manipulation;
     }
 
@@ -42,12 +45,10 @@
       cursor: pointer;
       border: none;
       border-radius: 10px;
-      padding: 12px 16px;
+      padding: 11px 15px;
       min-height: 44px;
       font-weight: 600;
-      transition: transform 0.08s ease, opacity 0.15s ease;
-      position: relative;
-      z-index: 2;
+      transition: transform 0.08s ease, background 0.15s ease, opacity 0.15s ease;
     }
 
     button:active {
@@ -55,13 +56,27 @@
     }
 
     .btn-primary {
-      background: var(--primary);
+      background: var(--primary-2);
       color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary);
     }
 
     .btn-accent {
       background: var(--accent);
       color: #fff;
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-danger {
+      background: #fef2f2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
     }
 
     .btn-outline {
@@ -70,51 +85,149 @@
       border: 1px solid var(--border);
     }
 
+    /* Header & Three-Dot Menu */
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: var(--primary);
+      z-index: 40;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: #fff;
-      padding: 14px 16px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 14px rgba(20, 83, 45, 0.22);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      gap: 10px;
+      position: relative;
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.2px;
     }
 
     .brand p {
       margin: 2px 0 0;
-      font-size: 0.8rem;
-      opacity: 0.9;
+      font-size: 0.78rem;
+      opacity: 0.92;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .status-pill {
-      font-size: 0.75rem;
-      background: rgba(255, 255, 255, 0.16);
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.18);
       padding: 6px 10px;
       border-radius: 999px;
       white-space: nowrap;
     }
 
+    .user-chip {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 10px;
+      border-radius: 999px;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .dots-btn {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      border-radius: 10px;
+    }
+
+    .dots-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      right: 0;
+      width: 225px;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+      padding: 6px;
+      z-index: 50;
+    }
+
+    .dots-menu.open {
+      display: block;
+    }
+
+    .dots-menu button {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 10px 12px;
+      min-height: 40px;
+      font-weight: 500;
+    }
+
+    .dots-menu button:hover {
+      background: var(--bg);
+    }
+
+    /* Hero / Ghore Bazar Banner */
+    .hero {
+      background: linear-gradient(120deg, #ecfdf5 0%, #fff7ed 100%);
+      border: 1px solid #d1fae5;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .hero h2 {
+      margin: 0 0 4px;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
     .container {
-      max-width: 960px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 16px;
     }
 
+    /* Tabs & Category Filter */
     .nav-tabs {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       padding-bottom: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .nav-tab {
@@ -125,9 +238,45 @@
     }
 
     .nav-tab.active {
-      background: var(--primary);
+      background: var(--primary-2);
       color: #fff;
-      border-color: var(--primary);
+      border-color: var(--primary-2);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cat-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cat-pill {
+      padding: 8px 13px;
+      min-height: 38px;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .cat-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .search-box {
+      max-width: 260px;
+      width: 100%;
     }
 
     .panel {
@@ -140,7 +289,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 14px;
     }
 
@@ -148,20 +297,40 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      padding: 15px;
+      box-shadow: var(--shadow);
     }
 
     .card h3 {
-      margin: 0 0 6px;
-      font-size: 1.05rem;
+      margin: 4px 0 6px;
+      font-size: 1.06rem;
+    }
+
+    .badge-cat {
+      display: inline-block;
+      font-size: 0.72rem;
+      background: #f0fdf4;
+      color: var(--primary);
+      border: 1px solid #bbf7d0;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
     }
 
     .price {
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       font-weight: 700;
       color: var(--accent);
       margin: 8px 0 12px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .card-actions .add-to-cart-btn {
+      flex: 1;
     }
 
     .form-row {
@@ -183,7 +352,7 @@
 
     .order-item {
       border-bottom: 1px solid var(--border);
-      padding: 10px 0;
+      padding: 11px 0;
     }
 
     .order-item:last-child {
@@ -195,29 +364,130 @@
       text-align: center;
       padding: 24px 12px;
     }
+
+    .auth-box {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .auth-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 32px;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 28px 16px 18px;
+    }
+
+    .footer-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    footer h4 {
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    footer p,
+    footer li {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin: 4px 0;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-bottom {
+      max-width: 1080px;
+      margin: 18px auto 0;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .sad-tag {
+      color: #fdba74;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand">
-      <h1>GramBangla Foods</h1>
-      <p>Sapaghar, Naogaon</p>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>GramBangla Foods</h1>
+        <p>ঘরের বাজার • Sapaghar, Naogaon</p>
+      </div>
+
+      <div class="header-right">
+        <span id="userChip" class="user-chip">অতিথি</span>
+        <span id="dbStatus" class="status-pill">Connecting...</span>
+        <button type="button" id="dotsBtn" class="dots-btn" aria-label="মেনু">⋮</button>
+      </div>
+
+      <div id="dotsMenu" class="dots-menu" role="menu">
+        <button type="button" data-tab="shop">🛒 পণ্যসমূহ (ঘরের বাজার)</button>
+        <button type="button" data-tab="cart">🧺 কার্ট ও অর্ডার</button>
+        <button type="button" data-tab="orders">📦 অর্ডারসমূহ</button>
+        <button type="button" data-tab="account">🔐 সাইন আপ / সাইন ইন</button>
+        <button type="button" data-tab="admin">➕ নতুন পণ্য যোগ ও ডিলিট</button>
+      </div>
     </div>
-    <div id="dbStatus" class="status-pill">Connecting...</div>
   </header>
 
   <div class="container">
+    <div class="hero">
+      <div>
+        <h2>সাপাহার, নওগাঁ থেকে সরাসরি ঘরের বাজার</h2>
+        <p>খাঁটি গুড়, মৌসুমি আম, চাল-ডাল, সরিষার তেল ও প্রাকৃতিক গ্রামীণ পণ্য সহজ অর্ডারে।</p>
+      </div>
+      <button type="button" class="btn-accent" onclick="switchTab('shop')">বাজার শুরু করুন</button>
+    </div>
+
     <div id="navTabs" class="nav-tabs" role="tablist">
       <button type="button" class="nav-tab active" data-tab="shop">পণ্যসমূহ</button>
       <button type="button" class="nav-tab" data-tab="cart">কার্ট (<span id="cartCount">0</span>)</button>
       <button type="button" class="nav-tab" data-tab="orders">অর্ডারসমূহ</button>
-      <button type="button" class="nav-tab" data-tab="admin">পণ্য যোগ</button>
+      <button type="button" class="nav-tab" data-tab="account">সাইন আপ / সাইন ইন</button>
+      <button type="button" class="nav-tab" data-tab="admin">পণ্য যোগ ও ডিলিট</button>
     </div>
 
+    <!-- Shop Tab -->
     <section id="tab-shop" class="panel active">
+      <div class="toolbar">
+        <div id="categoryPills" class="cat-pills">
+          <button type="button" class="cat-pill active" data-cat="সব">সব পণ্য</button>
+          <button type="button" class="cat-pill" data-cat="ফল ও গুড়">ফল ও গুড়</button>
+          <button type="button" class="cat-pill" data-cat="চাল ও ডাল">চাল ও ডাল</button>
+          <button type="button" class="cat-pill" data-cat="তেল ও মসলা">তেল ও মসলা</button>
+          <button type="button" class="cat-pill" data-cat="অন্যান্য">অন্যান্য</button>
+        </div>
+        <input id="searchInput" class="search-box" type="search" placeholder="পণ্য খুঁজুন..." />
+      </div>
       <div id="productList" class="grid"></div>
     </section>
 
+    <!-- Cart & Order Tab -->
     <section id="tab-cart" class="panel">
       <div class="card">
         <h3>আপনার কার্ট</h3>
@@ -232,6 +502,7 @@
       </div>
     </section>
 
+    <!-- Orders Tab -->
     <section id="tab-orders" class="panel">
       <div class="card">
         <h3>সর্বশেষ অর্ডারসমূহ</h3>
@@ -239,18 +510,108 @@
       </div>
     </section>
 
-    <section id="tab-admin" class="panel">
-      <div class="card">
-        <h3>নতুন পণ্য যুক্ত করুন</h3>
-        <form id="addProductForm" class="form-row">
-          <input id="prodName" type="text" placeholder="পণ্যের নাম (যেমন: দেশি আম / গুড়)" required />
-          <input id="prodPrice" type="number" min="1" step="any" placeholder="দাম (৳)" required />
-          <input id="prodUnit" type="text" placeholder="পরিমাণ/একক (যেমন: ১ কেজি / ৫০০ গ্রাম)" value="১ কেজি" />
-          <button type="submit" class="btn-primary">পণ্য সেভ করুন</button>
+    <!-- Sign Up / Sign In Tab -->
+    <section id="tab-account" class="panel">
+      <div class="card auth-box">
+        <div class="auth-switch">
+          <button type="button" id="showSignupBtn" class="btn-primary">সাইন আপ</button>
+          <button type="button" id="showSigninBtn" class="btn-outline">সাইন ইন</button>
+        </div>
+
+        <div id="currentUserBox" class="order-item" style="margin-bottom: 12px;"></div>
+
+        <!-- Sign Up Form -->
+        <form id="signupForm" class="form-row">
+          <h3>নতুন অ্যাকাউন্ট তৈরি করুন (সাইন আপ)</h3>
+          <input id="signupName" type="text" placeholder="আপনার নাম" required />
+          <input id="signupContact" type="text" placeholder="জিমেইল অথবা মোবাইল নম্বর" required />
+          <input id="signupPassword" type="password" placeholder="পাসওয়ার্ড তৈরি করুন" required />
+          <button type="submit" class="btn-primary">সাইন আপ সম্পন্ন করুন</button>
+        </form>
+
+        <!-- Sign In Form -->
+        <form id="signinForm" class="form-row" style="display: none;">
+          <h3>অ্যাকাউন্টে প্রবেশ করুন (সাইন ইন)</h3>
+          <input id="signinContact" type="text" placeholder="জিমেইল অথবা মোবাইল নম্বর" required />
+          <input id="signinPassword" type="password" placeholder="আপনার পাসওয়ার্ড" required />
+          <button type="submit" class="btn-accent">সাইন ইন করুন</button>
         </form>
       </div>
     </section>
+
+    <!-- Admin Add & Delete Product Tab -->
+    <section id="tab-admin" class="panel">
+      <div class="card" style="margin-bottom: 16px;">
+        <h3>নতুন পণ্য যোগ করুন</h3>
+        <p style="color: var(--muted); font-size: 0.85rem; margin-top: 0;">
+          এখানে ছবির কোনো লিংক দেওয়ার প্রয়োজন নেই—শুধু পণ্যের নাম, ক্যাটাগরি, পরিমাণ/একক ও দাম দিয়ে পোস্ট করুন।
+        </p>
+        <form id="addProductForm" class="form-row">
+          <select id="prodName" required>
+            <option value="">-- পণ্য নির্বাচন করুন বা নিচে লিখুন --</option>
+            <option value="খাঁটি খেজুর গুড়">খাঁটি খেজুর গুড়</option>
+            <option value="সাপাহার আম">সাপাহার আম</option>
+            <option value="আতপ চাল">আতপ চাল</option>
+            <option value="মিনিকেট চাল">মিনিকেট চাল</option>
+            <option value="দেশি মসুর ডাল">দেশি মসুর ডাল</option>
+            <option value="খাঁটি সরিষার তেল">খাঁটি সরিষার তেল</option>
+            <option value="মধু">প্রাকৃতিক মধু</option>
+            <option value="হলুদ গুঁড়ো">খাঁটি হলুদ গুঁড়ো</option>
+            <option value="মরিচ গুঁড়ো">খাঁটি মরিচ গুঁড়ো</option>
+          </select>
+          <input id="prodCustomName" type="text" placeholder="অথবা নতুন পণ্যের নাম লিখুন" />
+          <select id="prodCategory">
+            <option value="ফল ও গুড়">ফল ও গুড়</option>
+            <option value="চাল ও ডাল">চাল ও ডাল</option>
+            <option value="তেল ও মসলা">তেল ও মসলা</option>
+            <option value="অন্যান্য">অন্যান্য</option>
+          </select>
+          <input id="prodUnit" type="text" placeholder="পরিমাণ/একক (যেমন: ১ কেজি / ৫০০ গ্রাম / ১ লিটার)" value="১ কেজি" required />
+          <input id="prodPrice" type="number" min="1" step="any" placeholder="দাম (৳)" required />
+          <button type="submit" class="btn-primary">পণ্য পোস্ট করুন</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>পণ্য ডিলিট / পরিচালনা করুন</h3>
+        <div id="adminProductList"></div>
+      </div>
+    </section>
   </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>GramBangla Foods</h4>
+        <p>ঘরের বাজার • Sapaghar, Naogaon, Rajshahi Division, Bangladesh</p>
+        <p>তাজা ও মানসম্মত গ্রামীণ খাদ্যপণ্য সরাসরি আপনার দরজায়।</p>
+      </div>
+
+      <div>
+        <h4>যোগাযোগ (৩ জন)</h4>
+        <ul>
+          <li>📞 যোগাযোগ ১: <span id="contact1">01700-000001</span></li>
+          <li>📞 যোগাযোগ ২: <span id="contact2">01700-000002</span></li>
+          <li>📞 যোগাযোগ ৩: <span id="contact3">01700-000003</span></li>
+          <li>✉️ জিমেইল: <span id="founderEmail">grambanglafoods@gmail.com</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>দ্রুত লিংক</h4>
+        <ul>
+          <li><a href="#top" onclick="switchTab('shop'); return false;" style="color:#cbd5e1;">পণ্যসমূহ</a></li>
+          <li><a href="#top" onclick="switchTab('cart'); return false;" style="color:#cbd5e1;">কার্ট ও অর্ডার</a></li>
+          <li><a href="#top" onclick="switchTab('account'); return false;" style="color:#cbd5e1;">সাইন আপ / সাইন ইন</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> GramBangla Foods. সর্বস্বত্ব সংরক্ষিত।</span>
+      <span>Founder: <span class="sad-tag">SAD</span></span>
+    </div>
+  </footer>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
@@ -258,6 +619,8 @@
       getFirestore,
       collection,
       addDoc,
+      deleteDoc,
+      doc,
       onSnapshot,
       query,
       orderBy
@@ -273,254 +636,55 @@
       measurementId: "G-T3C7SHY1H2"
     };
 
+    // প্রয়োজনে নিচের ৩টি নম্বর ও জিমেইল আপনার আসল তথ্য দিয়ে বদলে নিন
+    const CONTACT_INFO = {
+      phone1: "01799013270",
+      phone2: "01799069636",
+      phone3: "01774093163",
+      email: "grambanglafoods@gmail2029.com"
+    };
+
+    document.getElementById("contact1").textContent = CONTACT_INFO.phone1;
+    document.getElementById("contact2").textContent = CONTACT_INFO.phone2;
+    document.getElementById("contact3").textContent = CONTACT_INFO.phone3;
+    document.getElementById("founderEmail").textContent = CONTACT_INFO.email;
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     const STORAGE_KEYS = {
-      products: "gbf_products_v1",
-      orders: "gbf_orders_v1"
+      products: "gbf_products_v2",
+      orders: "gbf_orders_v2",
+      users: "gbf_users_v1",
+      currentUser: "gbf_current_user_v1"
     };
 
     const defaultProducts = [
-      { id: "p1", name: "খাঁটি গুড়", price: 320, unit: "১ কেজি" },
-      { id: "p2", name: "সাপাহার আম", price: 180, unit: "১ কেজি" }
+      { id: "p1", name: "খাঁটি খেজুর গুড়", category: "ফল ও গুড়", price: 320, unit: "১ কেজি", createdAt: 1700000009 },
+      { id: "p2", name: "সাপাহার আম", category: "ফল ও গুড়", price: 180, unit: "১ কেজি", createdAt: 1700000008 },
+      { id: "p3", name: "মিনিকেট চাল", category: "চাল ও ডাল", price: 72, unit: "১ কেজি", createdAt: 1700000007 },
+      { id: "p4", name: "আতপ চাল", category: "চাল ও ডাল", price: 65, unit: "১ কেজি", createdAt: 1700000006 },
+      { id: "p5", name: "দেশি মসুর ডাল", category: "চাল ও ডাল", price: 145, unit: "১ কেজি", createdAt: 1700000005 },
+      { id: "p6", name: "খাঁটি সরিষার তেল", category: "তেল ও মসলা", price: 240, unit: "১ লিটার", createdAt: 1700000004 },
+      { id: "p7", name: "হলুদ গুঁড়ো", category: "তেল ও মসলা", price: 90, unit: "২৫০ গ্রাম", createdAt: 1700000003 },
+      { id: "p8", name: "মরিচ গুঁড়ো", category: "তেল ও মসলা", price: 110, unit: "২৫০ গ্রাম", createdAt: 1700000002 },
+      { id: "p9", name: "প্রাকৃতিক মধু", category: "অন্যান্য", price: 650, unit: "৫০০ গ্রাম", createdAt: 1700000001 }
     ];
 
     let products = JSON.parse(localStorage.getItem(STORAGE_KEYS.products) || "null") || defaultProducts;
     let orders = JSON.parse(localStorage.getItem(STORAGE_KEYS.orders) || "[]");
+    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.users) || "[]");
+    let currentUser = JSON.parse(localStorage.getItem(STORAGE_KEYS.currentUser) || "null");
     let cart = [];
+    let selectedCategory = "সব";
+    let searchText = "";
     let db = null;
     let firestoreReady = false;
 
     const statusEl = document.getElementById("dbStatus");
+    const dotsMenu = document.getElementById("dotsMenu");
 
     function saveLocal() {
       localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(products));
       localStorage.setItem(STORAGE_KEYS.orders, JSON.stringify(orders));
-    }
-
-    function renderProducts() {
-      const el = document.getElementById("productList");
-      if (!products.length) {
-        el.innerHTML = `<div class="card empty">কোনো পণ্য পাওয়া যায়নি। "পণ্য যোগ" ট্যাব থেকে পণ্য যুক্ত করুন।</div>`;
-        return;
-      }
-      el.innerHTML = products.map((p) => `
-        <div class="card">
-          <h3>${escapeHtml(p.name)}</h3>
-          <div>একক: ${escapeHtml(p.unit || "১টি")}</div>
-          <div class="price">৳${Number(p.price || 0)}</div>
-          <button type="button" class="btn-primary add-to-cart-btn" data-id="${escapeAttr(p.id)}" style="width:100%;">
-            কার্টে যোগ করুন
-          </button>
-        </div>
-      `).join("");
-    }
-
-    function renderCart() {
-      document.getElementById("cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
-      const listEl = document.getElementById("cartItems");
-      const totalEl = document.getElementById("cartTotal");
-
-      if (!cart.length) {
-        listEl.innerHTML = `<div class="empty">কার্ট খালি আছে।</div>`;
-        totalEl.textContent = "মোট: ৳0";
-        return;
-      }
-
-      let total = 0;
-      listEl.innerHTML = cart.map((item) => {
-        const sub = Number(item.price) * item.qty;
-        total += sub;
-        return `
-          <div class="order-item" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
-            <div>
-              <strong>${escapeHtml(item.name)}</strong><br/>
-              <small>৳${Number(item.price)} × ${item.qty} = ৳${sub}</small>
-            </div>
-            <button type="button" class="btn-outline remove-cart-btn" data-id="${escapeAttr(item.id)}">বাদ দিন</button>
-          </div>
-        `;
-      }).join("");
-      totalEl.textContent = `মোট: ৳${total}`;
-    }
-
-    function renderOrders() {
-      const el = document.getElementById("orderList");
-      if (!orders.length) {
-        el.innerHTML = `<div class="empty">এখনো কোনো অর্ডার আসেনি।</div>`;
-        return;
-      }
-      el.innerHTML = orders.map((o) => `
-        <div class="order-item">
-          <div><strong>${escapeHtml(o.customerName || "গ্রাহক")}</strong> — <span>৳${Number(o.total || 0)}</span></div>
-          <small>ফোন: ${escapeHtml(o.customerPhone || "-")} | ঠিকানা: ${escapeHtml(o.customerAddress || "-")}</small>
-        </div>
-      `).join("");
-    }
-
-    function switchTab(tabName) {
-      document.querySelectorAll(".nav-tab").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.tab === tabName);
-      });
-      document.querySelectorAll(".panel").forEach((panel) => {
-        panel.classList.toggle("active", panel.id === `tab-${tabName}`);
-      });
-    }
-
-    document.addEventListener("click", (event) => {
-      const tabBtn = event.target.closest(".nav-tab");
-      if (tabBtn) {
-        switchTab(tabBtn.dataset.tab);
-        return;
-      }
-
-      const addBtn = event.target.closest(".add-to-cart-btn");
-      if (addBtn) {
-        const prod = products.find((p) => String(p.id) === String(addBtn.dataset.id));
-        if (!prod) return;
-        const existing = cart.find((c) => String(c.id) === String(prod.id));
-        if (existing) {
-          existing.qty += 1;
-        } else {
-          cart.push({ id: prod.id, name: prod.name, price: Number(prod.price), qty: 1 });
-        }
-        renderCart();
-        addBtn.textContent = "যোগ হয়েছে ✓";
-        setTimeout(() => {
-          addBtn.textContent = "কার্টে যোগ করুন";
-        }, 700);
-        return;
-      }
-
-      const removeBtn = event.target.closest(".remove-cart-btn");
-      if (removeBtn) {
-        cart = cart.filter((c) => String(c.id) !== String(removeBtn.dataset.id));
-        renderCart();
-      }
-    });
-
-    document.getElementById("addProductForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("prodName").value.trim();
-      const price = Number(document.getElementById("prodPrice").value);
-      const unit = document.getElementById("prodUnit").value.trim() || "১ কেজি";
-      if (!name || !price) return;
-
-      const newProduct = {
-        id: String(Date.now()),
-        name,
-        price,
-        unit,
-        createdAt: Date.now()
-      };
-
-      if (firestoreReady && db) {
-        try {
-          await addDoc(collection(db, "products"), newProduct);
-        } catch (err) {
-          products.unshift(newProduct);
-          saveLocal();
-          renderProducts();
-        }
-      } else {
-        products.unshift(newProduct);
-        saveLocal();
-        renderProducts();
-      }
-
-      e.target.reset();
-      document.getElementById("prodUnit").value = "১ কেজি";
-      switchTab("shop");
-    });
-
-    document.getElementById("placeOrderBtn").addEventListener("click", async () => {
-      if (!cart.length) {
-        alert("আগে কার্টে অন্তত একটি পণ্য যোগ করুন।");
-        return;
-      }
-      const customerName = document.getElementById("customerName").value.trim();
-      const customerPhone = document.getElementById("customerPhone").value.trim();
-      const customerAddress = document.getElementById("customerAddress").value.trim();
-
-      if (!customerName || !customerPhone) {
-        alert("অনুগ্রহ করে গ্রাহকের নাম ও মোবাইল নম্বর দিন।");
-        return;
-      }
-
-      const total = cart.reduce((sum, item) => sum + Number(item.price) * item.qty, 0);
-      const newOrder = {
-        id: String(Date.now()),
-        customerName,
-        customerPhone,
-        customerAddress,
-        items: cart,
-        total,
-        createdAt: Date.now()
-      };
-
-      if (firestoreReady && db) {
-        try {
-          await addDoc(collection(db, "orders"), newOrder);
-        } catch (err) {
-          orders.unshift(newOrder);
-          saveLocal();
-          renderOrders();
-        }
-      } else {
-        orders.unshift(newOrder);
-        saveLocal();
-        renderOrders();
-      }
-
-      cart = [];
-      renderCart();
-      document.getElementById("customerName").value = "";
-      document.getElementById("customerPhone").value = "";
-      document.getElementById("customerAddress").value = "";
-      alert("আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।");
-      switchTab("orders");
-    });
-
-    function initFirebaseSync() {
-      try {
-        const app = initializeApp(firebaseConfig);
-        db = getFirestore(app);
-        firestoreReady = true;
-        statusEl.textContent = "Firestore Live";
-
-        const prodQuery = query(collection(db, "products"), orderBy("createdAt", "desc"));
-        onSnapshot(prodQuery, (snap) => {
-          const cloudProducts = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-          if (cloudProducts.length) {
-            products = cloudProducts;
-            saveLocal();
-            renderProducts();
-          }
-        });
-
-        const orderQuery = query(collection(db, "orders"), orderBy("createdAt", "desc"));
-        onSnapshot(orderQuery, (snap) => {
-          orders = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-          saveLocal();
-          renderOrders();
-        });
-      } catch (err) {
-        statusEl.textContent = "Local Fallback";
-      }
-    }
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, (m) => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-      }[m]));
-    }
-
-    function escapeAttr(str) {
-      return String(str).replace(/"/g, "&quot;");
-    }
-
-    renderProducts();
-    renderCart();
-    renderOrders();
-    initFirebaseSync();
-  </script>
-</body>
-</html>
+      localStorage.setItem(STORAGE_KEYS.users, JSON.stringify(users));
+      localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(currentUser));
+   
