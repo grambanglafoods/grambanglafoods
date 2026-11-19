@@ -1,366 +1,813 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GramBangla Foods | গ্রামবাংলা ফুডস - সাপাহার, নওগাঁ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GramBangla Foods | গ্রামবাংলা ফুডস — সাপাহার, নওগাঁ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #1b5e20;
-      --primary-dark: #0d3b11;
-      --secondary: #f57c00;
-      --bg-light: #f4f6f8;
-      --card-bg: #ffffff;
-      --text-dark: #1e293b;
-      --text-muted: #64748b;
-      --header-bg: #ffffff;
+      --bg: #f6f8f5;
+      --surface: #ffffff;
+      --surface-2: #eef3ec;
+      --text: #162219;
+      --muted: #526356;
+      --primary: #1b6b3a;
+      --primary-hover: #13522b;
+      --accent: #f27a1a;
+      --accent-hover: #d8670d;
+      --danger: #c92a2a;
+      --border: #dce5d9;
+      --shadow: 0 8px 24px rgba(22, 34, 25, 0.08);
+      --radius: 14px;
     }
 
     [data-theme="dark"] {
-      --primary: #2e7d32;
-      --primary-dark: #123514;
-      --secondary: #fb8c00;
-      --bg-light: #0f172a;
-      --card-bg: #1e293b;
-      --text-dark: #f8fafc;
-      --text-muted: #94a3b8;
-      --header-bg: #1e293b;
+      --bg: #0f1612;
+      --surface: #17221b;
+      --surface-2: #202f25;
+      --text: #eef5f0;
+      --muted: #a6b8ac;
+      --primary: #2ea058;
+      --primary-hover: #248447;
+      --accent: #ff8c2e;
+      --accent-hover: #e5771c;
+      --danger: #ff6b6b;
+      --border: #2a3b30;
+      --shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Hind Siliguri', sans-serif; }
-    body { background-color: var(--bg-light); color: var(--text-dark); padding-bottom: 70px; transition: 0.3s; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .top-notice { background: #0f172a; color: #f8fafc; font-size: 12px; text-align: center; padding: 6px 10px; }
-    .top-notice span { color: #fde047; font-weight: 700; }
-    
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 76px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Top Bar */
+    .top-strip {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.88rem;
+      padding: 7px 14px;
+      text-align: center;
+    }
+
     .hotline-bar {
-      background: var(--primary-dark); color: #fff; padding: 8px 15px; font-size: 13px;
-      display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; font-weight: 600;
+      background: var(--primary-hover);
+      color: #e9f7ee;
+      font-size: 0.86rem;
+      padding: 6px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 18px;
     }
-    .hotline-bar a { color: #4ade80; text-decoration: none; }
 
-    header {
-      background: var(--header-bg); position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); padding: 12px 18px;
-      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    .hotline-bar a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
     }
-    .header-left { display: flex; align-items: center; gap: 12px; }
-    .menu-btn { font-size: 22px; cursor: pointer; color: var(--primary); }
-    .logo { font-size: 18px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
 
-    .search-container { flex-grow: 1; max-width: 350px; position: relative; }
-    .search-container input {
-      width: 100%; padding: 7px 15px 7px 32px; border-radius: 20px; border: 1px solid #cbd5e1;
-      outline: none; background: var(--bg-light); color: var(--text-dark); font-size: 12px;
+    /* Header */
+    header.main-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     }
-    .search-container i { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
-    .header-right { display: flex; align-items: center; gap: 12px; }
-    .cart-trigger { position: relative; font-size: 20px; color: var(--primary); cursor: pointer; }
-    .cart-count {
-      position: absolute; top: -6px; right: -8px; background: var(--secondary);
-      color: #fff; font-size: 10px; width: 17px; height: 17px; border-radius: 50%;
-      display: flex; justify-content: center; align-items: center; font-weight: 700;
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .dark-toggle { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-dark); }
 
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--primary);
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      min-width: 0;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 0.95rem;
+      padding: 2px 6px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      background: var(--border);
+      transform: translateY(-1px);
+    }
+
+    .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-pill {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 14px;
+    }
+
+    /* Hero */
     .hero {
-      background: linear-gradient(135deg, rgba(27,94,32,0.9), rgba(46,125,50,0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800') center/cover;
-      color: #fff; text-align: center; padding: 35px 15px; border-radius: 0 0 20px 20px;
-    }
-    .hero h1 { font-size: 24px; font-weight: 700; margin-bottom: 5px; }
-    .hero p { font-size: 13px; color: #e2e8f0; }
-    .hero-badge { background: rgba(255, 255, 255, 0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; margin-top: 8px; font-size: 11px; }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 15px; }
-    
-    .section-header { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; }
-    .section-title { font-size: 16px; font-weight: 700; color: var(--text-dark); border-left: 4px solid var(--secondary); padding-left: 8px; }
-    
-    .add-prod-btn {
-      background: var(--secondary); color: #fff; border: none; padding: 6px 12px; border-radius: 20px;
-      font-weight: 700; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px;
+      background: linear-gradient(135deg, #1b6b3a 0%, #2b8a4e 65%, #3aa362 100%);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
     }
 
-    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); gap: 8px; margin-bottom: 20px; }
-    .cat-item {
-      background: var(--card-bg); border-radius: 10px; padding: 10px 4px; text-align: center; cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+    .hero h1 {
+      font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 6px;
     }
-    .cat-item:hover { border-color: var(--primary); background: rgba(27,94,32,0.05); }
-    .cat-item i { font-size: 20px; color: var(--primary); margin-bottom: 4px; display: block; }
-    .cat-item span { font-size: 11px; font-weight: 600; color: var(--text-dark); }
 
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .hero p {
+      opacity: 0.95;
+      max-width: 650px;
+      margin: 0 auto 14px;
+      font-size: 1rem;
+    }
+
+    .loc-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.18);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Section Title */
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 14px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    /* Categories */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .cat-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .cat-card:hover, .cat-card.active {
+      border-color: var(--primary);
+      background: var(--surface-2);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .cat-emoji {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    .btn-outline:hover {
+      background: var(--surface-2);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
     .product-card {
-      background: var(--card-bg); border-radius: 10px; overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
-      display: flex; flex-direction: column; justify-content: space-between; position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
     }
-    .img-container { position: relative; width: 100%; height: 130px; overflow: hidden; background: #e2e8f0; }
-    .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-    
-    .product-overlay {
-      position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.8);
-      color: #fff; padding: 8px; font-size: 11px; transform: translateY(100%); transition: 0.3s ease;
+
+    .product-card:hover {
+      transform: translateY(-3px);
     }
-    .product-card:hover .product-overlay { transform: translateY(0); }
-    .product-card:hover .product-img { transform: scale(1.05); }
 
-    .product-details { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .product-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; color: var(--text-dark); }
-    .product-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
-    .product-price { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .product-img-wrap {
+      height: 170px;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-    .action-btns { display: flex; flex-direction: column; gap: 4px; }
-    .btn-cart { background: #e8f5e9; color: var(--primary); border: 1px solid #c8e6c9; padding: 5px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; }
-    .btn-buy { background: var(--secondary); color: #fff; border: none; padding: 5px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; }
-    .btn-wa { background: #22c55e; color: #fff; border: none; padding: 5px; border-radius: 5px; font-size: 11px; font-weight: 700; text-decoration: none; text-align: center; display: block; }
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-    .cart-drawer { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: var(--card-bg); z-index: 400; transition: 0.3s; box-shadow: -5px 0 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
-    .cart-drawer.active { right: 0; }
-    .cart-header { background: var(--primary-dark); color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-    .cart-body { padding: 15px; flex-grow: 1; overflow-y: auto; }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 8px; margin-bottom: 8px; font-size: 12px; }
-    .cart-footer { padding: 15px; border-top: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); }
+    .cat-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-size: 0.78rem;
+      padding: 2px 9px;
+      border-radius: 999px;
+    }
 
-    .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 200; }
-    .sidebar { position: fixed; top: 0; left: -260px; width: 260px; height: 100%; background: var(--card-bg); z-index: 201; transition: 0.3s; display: flex; flex-direction: column; }
-    .sidebar.active { left: 0; }
-    .sidebar-header { background: var(--primary-dark); color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-    .sidebar-menu { list-style: none; padding: 15px; overflow-y: auto; }
-    .sidebar-menu li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); cursor: pointer; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 10px; color: var(--text-dark); }
+    .product-body {
+      padding: 13px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
 
-    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 300; }
-    .modal-box { background: var(--card-bg); color: var(--text-dark); width: 90%; max-width: 380px; border-radius: 12px; padding: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
-    .form-group { margin-bottom: 10px; }
-    .form-group label { display: block; font-size: 11px; font-weight: 700; margin-bottom: 3px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; background: var(--bg-light); color: var(--text-dark); outline: none; }
-    .submit-btn { background: var(--primary); color: #fff; border: none; padding: 9px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 5px; }
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
 
-    footer { background: #0f172a; color: #f8fafc; padding: 30px 15px 80px 15px; margin-top: 30px; text-align: center; font-size: 12px; }
-    .footer-content h2 { color: #4ade80; font-size: 18px; margin-bottom: 6px; }
+    .product-unit {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
 
-    .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--header-bg); border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-around; padding: 6px 0; z-index: 100; }
-    .nav-btn { text-align: center; color: var(--text-muted); text-decoration: none; font-size: 11px; cursor: pointer; }
-    .nav-btn i { display: block; font-size: 16px; margin-bottom: 2px; }
-    .nav-btn.active { color: var(--primary); font-weight: 700; }
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .add-btn {
+      flex: 1;
+      background: var(--primary);
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    .add-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .mini-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 7px 9px;
+      border-radius: 9px;
+      font-size: 0.82rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #101a26;
+      color: #dce6f2;
+      padding: 28px 16px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    footer h3 {
+      color: #5cd68d;
+      margin-bottom: 6px;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+
+    /* Bottom Mobile Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 850;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 6px 4px;
+    }
+
+    .bottom-nav button, .bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      padding: 4px;
+    }
+
+    .bottom-nav .plus-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 1px;
+    }
+
+    /* Drawer & Modal */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .overlay.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .close-x {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      font-size: 0.95rem;
+    }
+
+    .img-preview {
+      margin-top: 8px;
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: none;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .qty-ctrl {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-2);
+      border-radius: 8px;
+      padding: 2px 6px;
+    }
+
+    .qty-ctrl button {
+      width: 24px;
+      height: 24px;
+      font-weight: 700;
+      background: var(--surface);
+      border-radius: 6px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #162219;
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 1200;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+      .bottom-nav, .toast {
+        display: none;
+      }
+    }
   </style>
 </head>
-<body data-theme="light">
+<body>
 
-  <div class="top-notice">
-    🌿 ১০০% প্রাকৃতিক পণ্য | সরাসরি <span>সাপাহার, নওগাঁ</span> থেকে সরবরাহকৃত
+  <div class="top-strip">
+    🌿 ১০০% প্রাকৃতিক পণ্য | সরাসরি সাপাহার, নওগাঁ থেকে সরবরাহকৃত
   </div>
 
   <div class="hotline-bar">
     <span>হটলাইন:</span>
-    <a href="tel:01799013270"><i class="fa-solid fa-phone"></i> 01799-013270</a> |
-    <a href="tel:01799069636"><i class="fa-solid fa-phone"></i> 01799-069636</a> |
-    <a href="tel:01774093163"><i class="fa-solid fa-phone"></i> 01774-093163</a>
+    <a href="tel:01799013270">📞 01799-013270</a>
+    <a href="tel:01799069636">📞 01799-069636</a>
+    <a href="tel:01774093163">📞 01774-093163</a>
   </div>
 
-  <header>
-    <div class="header-left">
-      <i class="fa-solid fa-bars menu-btn" onclick="toggleSidebar()"></i>
-      <a href="#" class="logo"><i class="fa-solid fa-leaf"></i> গ্রামবাংলা</a>
-    </div>
-
-    <div class="search-container">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন..." onkeyup="searchProducts()">
-    </div>
-
-    <div class="header-right">
-      <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
-      <div class="cart-trigger" onclick="checkAuthAndOpenCart()">
-        <i class="fa-solid fa-basket-shopping"></i>
-        <div class="cart-count" id="cartBadge">0</div>
+  <header class="main-header">
+    <div class="header-inner">
+      <button type="button" class="icon-btn" id="menuBtn" title="মেনু ও ম্যানেজমেন্ট">☰</button>
+      <a href="#" class="brand">🍃 গ্রামবাংলা</a>
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="search" id="searchInput" placeholder="পণ্য খুঁজুন..." autocomplete="off" />
       </div>
+      <button type="button" class="icon-btn" id="themeToggle" title="ডার্ক/লাইট মোড">🌙</button>
+      <button type="button" class="user-pill" id="authBtn">লগইন</button>
+      <button type="button" class="icon-btn" id="cartBtn" title="কার্ট">
+        🛒
+        <span class="badge" id="cartCount">0</span>
+      </button>
     </div>
   </header>
 
-  <!-- Sidebar -->
-  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h3 style="color:#fff; font-size:15px;">ক্যাটাগরি ও প্রোফাইল</h3>
-      <i class="fa-solid fa-xmark" style="cursor:pointer; color:#fff; font-size:18px;" onclick="toggleSidebar()"></i>
-    </div>
-    <div style="padding:12px; background:rgba(0,0,0,0.03); border-bottom:1px solid rgba(0,0,0,0.05);" id="profileArea"></div>
-    <ul class="sidebar-menu">
-      <li onclick="filterCategory('সকল')"><i class="fa-solid fa-border-all"></i> সকল পণ্য</li>
-      <li onclick="filterCategory('চাউল')"><i class="fa-solid fa-bowl-rice"></i> চাউল</li>
-      <li onclick="filterCategory('গম')"><i class="fa-solid fa-wheat-awn"></i> গম</li>
-      <li onclick="filterCategory('ভুট্টা')"><i class="fa-solid fa-seedling"></i> ভুট্টা</li>
-      <li onclick="filterCategory('সরিষা তেল')"><i class="fa-solid fa-bottle-droplet"></i> সরিষা তেল</li>
-      <li onclick="filterCategory('আম')"><i class="fa-solid fa-apple-whole"></i> আম</li>
-      <li onclick="filterCategory('লিচু')"><i class="fa-solid fa-circle"></i> লিচু</li>
-      <li onclick="filterCategory('বরই')"><i class="fa-solid fa-spa"></i> বড়ই</li>
-      <li onclick="filterCategory('খেজুর')"><i class="fa-solid fa-calendar-day"></i> খেজুর</li>
-      <li onclick="filterCategory('কালাই')"><i class="fa-solid fa-seedling"></i> কালাই</li>
-    </ul>
-  </div>
+  <main class="container">
+    <section class="hero">
+      <h1>গ্রামবাংলা ফুডস</h1>
+      <p>সাপাহার, নওগাঁর খাঁটি গ্রাম থেকে সংগৃহীত মানসম্মত খাদ্যপণ্য — নিরাপদ ও সরাসরি হাতের নাগালে।</p>
+      <span class="loc-chip">📍 সাপাহার, নওগাঁ</span>
+    </section>
 
-  <!-- Cart Drawer -->
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>আপনার শপিং কার্ট</h3>
-      <i class="fa-solid fa-xmark" style="cursor:pointer; font-size:18px;" onclick="toggleCart()"></i>
-    </div>
-    <div class="cart-body" id="cartItemsContainer">
-      <p style="text-align:center; color:#888;">কার্ট খালি রয়েছে</p>
-    </div>
-    <div class="cart-footer">
-      <h4>মোট মূল্য: ৳<span id="cartTotalSum">0</span></h4>
-      <button class="submit-btn" style="margin-top:8px; background:#22c55e;" onclick="checkoutWhatsApp()">WhatsApp এ অর্ডার কনফার্ম করুন</button>
-    </div>
-  </div>
-
-  <div class="hero">
-    <h1>গ্রামবাংলা ফুডস</h1>
-    <p>সাপাহার, নওগাঁর খাঁটি গ্রাম থেকে সংগৃহীত মানসম্মত খাদ্যপণ্য</p>
-    <div class="hero-badge"><i class="fa-solid fa-location-dot"></i> সাপাহার, নওগাঁ</div>
-  </div>
-
-  <div class="container">
-    <div class="section-title" style="margin-bottom:10px;">পণ্য ক্যাটাগরি</div>
-    <div class="cat-grid">
-      <div class="cat-item" onclick="filterCategory('চাউল')"><i class="fa-solid fa-bowl-rice"></i><span>চাউল</span></div>
-      <div class="cat-item" onclick="filterCategory('গম')"><i class="fa-solid fa-wheat-awn"></i><span>গম</span></div>
-      <div class="cat-item" onclick="filterCategory('ভুট্টা')"><i class="fa-solid fa-seedling"></i><span>ভুট্টা</span></div>
-      <div class="cat-item" onclick="filterCategory('সরিষা তেল')"><i class="fa-solid fa-bottle-droplet"></i><span>সরিষা তেল</span></div>
-      <div class="cat-item" onclick="filterCategory('আম')"><i class="fa-solid fa-apple-whole"></i><span>আম</span></div>
-      <div class="cat-item" onclick="filterCategory('লিচু')"><i class="fa-solid fa-circle"></i><span>লিচু</span></div>
-      <div class="cat-item" onclick="filterCategory('বরই')"><i class="fa-solid fa-spa"></i><span>বরই</span></div>
-      <div class="cat-item" onclick="filterCategory('খেজুর')"><i class="fa-solid fa-calendar-day"></i><span>খেজুর</span></div>
+    <div class="section-head">
+      <h2 class="section-title">পণ্য ক্যাটাগরি</h2>
+      <button type="button" class="btn-outline" id="resetFilterBtn">সব পণ্য দেখুন</button>
     </div>
 
-    <div class="section-header">
-      <div class="section-title" id="pageTitle">আমাদের পণ্যসমূহ</div>
-      <button class="add-prod-btn" onclick="openAddModal()"><i class="fa-solid fa-plus"></i> পণ্য যোগ করুন</button>
+    <div class="category-grid" id="categoryGrid"></div>
+
+    <div class="toolbar">
+      <h2 class="section-title" id="productsHeading">আমাদের পণ্যসমূহ</h2>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="btn-accent" id="openAddProductBtn">+ পণ্য যোগ করুন</button>
+      </div>
     </div>
 
     <div class="products-grid" id="productsGrid"></div>
-  </div>
-
-  <!-- Add Product Modal -->
-  <div class="modal" id="addProductModal">
-    <div class="modal-box">
-      <i class="fa-solid fa-xmark" style="position:absolute; top:15px; right:15px; cursor:pointer; font-size:18px;" onclick="closeAddModal()"></i>
-      <h3 style="margin-bottom:12px;">নতুন পণ্য যুক্ত করুন</h3>
-      
-      <div class="form-group">
-        <label>পণ্যের নাম</label>
-        <input type="text" id="newPName" placeholder="যেমন: সাপাহারের খাঁটি মধু">
-      </div>
-
-      <div class="form-group">
-        <label>ক্যাটাগরি</label>
-        <select id="newPCat">
-          <option value="চাউল">চাউল</option>
-          <option value="গম">গম</option>
-          <option value="ভুট্টা">ভুট্টা</option>
-          <option value="সরিষা তেল">সরিষা তেল</option>
-          <option value="আম">আম</option>
-          <option value="লিচু">লিচু</option>
-          <option value="বরই">বরই</option>
-          <option value="খেজুর">খেজুর</option>
-          <option value="কালাই">কালাই</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>দাম (টাকা)</label>
-        <input type="number" id="newPPrice" placeholder="যেমন: ৫০০">
-      </div>
-
-      <div class="form-group">
-        <label>বিস্তারিত বিবরণ (ছবির ওপর ভেসে উঠবে)</label>
-        <textarea id="newPDesc" rows="2" placeholder="ওজন বা গুণাগুণ লিখুন..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>ডিভাইস থেকে সরাসরি ছবি আপলোড করুন</label>
-        <input type="file" id="newPImgFile" accept="image/*">
-      </div>
-
-      <button class="submit-btn" onclick="saveNewProduct()">ওয়েবসাইটে প্রকাশ করুন</button>
-    </div>
-  </div>
-
-  <!-- Sign Up / Sign In Modal -->
-  <div class="modal" id="authModal">
-    <div class="modal-box">
-      <i class="fa-solid fa-xmark" style="position:absolute; top:15px; right:15px; cursor:pointer; font-size:18px;" onclick="closeAuthModal()"></i>
-      <h3 id="authModalTitle" style="margin-bottom:12px;">সাইন আপ করুন</h3>
-      
-      <div id="signupFields">
-        <div class="form-group">
-          <label>আপনার নাম</label>
-          <input type="text" id="regName" placeholder="পূর্ণ নাম">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>ফোন নম্বর বা ইমেইল</label>
-        <input type="text" id="regContact" placeholder="017xxxxxxxx বা email@gmail.com">
-      </div>
-
-      <div class="form-group">
-        <label>পাসওয়ার্ড</label>
-        <input type="password" id="regPass" placeholder="গোপন পাসওয়ার্ড দিন">
-      </div>
-
-      <button class="submit-btn" id="authSubmitBtn" onclick="handleAuthSubmit()">সাইন আপ সম্পন্ন করুন</button>
-      <div style="text-align:center; font-size:11px; margin-top:8px; cursor:pointer; color:var(--secondary);" id="authSwitchText" onclick="switchAuthMode()">ইতিমধ্যে অ্যাকাউন্ট আছে? সাইন ইন করুন</div>
-    </div>
-  </div>
+  </main>
 
   <footer>
-    <div class="footer-content">
-      <h2>গ্রামবাংলা ফুডস</h2>
-      <p>সাপাহার, নওগাঁ থেকে সংগৃহীত শতভাগ খাঁটি ও প্রাকৃতিক পণ্য।</p>
-      <p style="color:#4ade80; font-weight:700;">Founder: SAD</p>
-      <p>ইমেইল: mdsazedulhaque2030@gmail.com</p>
-      <p>© 2026 GramBangla Foods. All Rights Reserved.</p>
-    </div>
+    <h3>গ্রামবাংলা ফুডস</h3>
+    <p>সাপাহার, নওগাঁ থেকে সংগৃহীত শতভাগ খাঁটি ও প্রাকৃতিক পণ্য।</p>
+    <p><strong>Founder: SAD</strong></p>
+    <p>ইমেইল: mdsazedulhaque2030@gmail.com</p>
+    <p>© ২০২৬ GramBangla Foods. All Rights Reserved.</p>
   </footer>
 
-  <div class="bottom-nav">
-    <div class="nav-btn active" onclick="filterCategory('সকল')"><i class="fa-solid fa-house"></i>হোম</div>
-    <div class="nav-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i>মেনু</div>
-    <div class="nav-btn" onclick="openAddModal()"><i class="fa-solid fa-plus-circle"></i>অ্যাড পণ্য</div>
-    <a href="tel:01799013270" class="nav-btn" style="color:inherit;"><i class="fa-solid fa-phone"></i>কল</a>
+  <nav class="bottom-nav">
+    <a href="#">🏠<span>হোম</span></a>
+    <button type="button" id="bottomMenuBtn">☰<span>মেনু</span></button>
+    <button type="button" id="bottomAddBtn"><span class="plus-circle">+</span><span>অ্যাড পণ্য</span></button>
+    <a href="tel:01799013270">📞<span>কল</span></a>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Product Modal (Add / Edit) -->
+  <div class="overlay" id="productModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="productModalTitle">নতুন পণ্য যোগ করুন</h3>
+        <button type="button" class="close-x" data-close="productModal">✕</button>
+      </div>
+      <form id="productForm">
+        <input type="hidden" id="editProductId" />
+        <div class="form-group">
+          <label for="prodName">পণ্যের নাম *</label>
+          <input type="text" id="prodName" required placeholder="যেমন: খাঁটি সরিষার তেল" />
+        </div>
+        <div class="form-group">
+          <label for="prodCategory">ক্যাটাগরি *</label>
+          <select id="prodCategory" required>
+            <option value="চাউল">চাউল</option>
+            <option value="গম">গম</option>
+            <option value="ভুট্টা">ভুট্টা</option>
+            <option value="সরিষা তেল">সরিষা তেল</option>
+            <option value="আম">আম</option>
+            <option value="লিচু">লিচু</option>
+            <option value="বরই">বরই</option>
+            <option value="খেজুর">খেজুর</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="prodPrice">মূল্য (টাকা) *</label>
+          <input type="number" id="prodPrice" min="1" required placeholder="যেমন: ২২০" />
+        </div>
+        <div class="form-group">
+          <label for="prodUnit">পরিমাণ / একক</label>
+          <input type="text" id="prodUnit" placeholder="যেমন: ১ লিটার / ১ কেজি" />
+        </div>
+        <div class="form-group">
+          <label for="prodImageFile">ছবি আপলোড করুন (Base64)</label>
+          <input type="file" id="prodImageFile" accept="image/*" />
+          <img id="prodImagePreview" class="img-preview" alt="প্রিভিউ" />
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">সংরক্ষণ করুন</button>
+      </form>
+    </div>
   </div>
 
-  <script>
-    let products = JSON.parse(localStorage.getItem('gb_prods_v4')) || [
-      { id: 1, name: "সাপাহারের খাঁটি সরিষার তেল", category: "সরিষা তেল", price: 220, desc: "ঘানি ভাঙা খাঁটি সরিষার তেল (১ লিটার)। ১০০% বিশুদ্ধ।", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
-      { id: 2, name: "প্রিমিয়াম নাজিরশাইল চাউল", category: "চাউল", price: 85, desc: "নতুন ধানের সুগন্ধি চাল (১ কেজি)।", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300" }
-    ];
+  <!-- Cart Modal -->
+  <div class="overlay" id="cartModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>আপনার শপিং কার্ট</h3>
+        <button type="button" class="close-x" data-close="cartModal">✕</button>
+      </div>
+      <div id="cartItemsList"></div>
+      <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--border);">
+        <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.1rem; margin-bottom:12px;">
+          <span>সর্বমোট মূল্য:</span>
+          <span id="cartTotal">৳০</span>
+        </div>
+        <div class="form-group">
+          <label for="customerName">আপনার নাম</label>
+          <input type="text" id="customerName" placeholder="নাম লিখুন" />
+        </div>
+        <div class="form-group">
+          <label for="customerPhone">মোবাইল নম্বর / ঠিকানা</label>
+          <input type="text" id="customerAddress" placeholder="যেমন: সাপাহার, নওগাঁ — 017XXXXXXXX" />
+        </div>
+        <button type="button" class="btn-primary" id="whatsappCheckoutBtn" style="width:100%; justify-content:center;">
+          💬 WhatsApp-এ অর্ডার করুন
+        </button>
+      </div>
+    </div>
+  </div>
 
-    let cart = JSON.parse(localStorage.getItem('gb_cart_v4')) || [];
-    let currentUser = JSON.parse(localStorage.getItem('gb_user_v4')) || null;
-    let isSignInMode = false;
-
-    function renderProducts(list = products) {
-      const grid = document.getElementById('productsGrid');
-      grid.innerHTML = '';
-
-      if (list.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#888; padding:20px;">কোনো পণ্য পাওয়া যায়নি।</p>';
-        return;
-      }
-
-      list.forEach(p => {
-        grid.innerHTML += `
-          <div class="product-card">
-            <div class="img-container">
-              <img src="${p.img}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
-              <div class="product-overlay">
-                <strong>বিস্তারিত:</strong> ${p.def@ehbsiywgh#7-3
-udhh@73--28-!--++7ujwun
-ksuj@7_-+99#77
+  <!-- Auth Modal -->
+  <div class="overlay" id="authModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="authModalTitle">সাইন ইন / সাইন আপ</h3>
+        <button type="button" class="close-x" data-close="authModal">✕</button>
+      </div>
+      <div id="authLoggedInView" style="display:none; text-align:center;">
+        <p style="margin-bottom:12px;">আপনি লগইন আছেন: <strong id="loggedUserName"></strong></p>
+        <button type="button" class="btn-outline" id="logoutBtn">লগআউট করুন</button>
+      </d
